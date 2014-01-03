@@ -1,0 +1,18 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+        <script src="jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#red-pill').click(function() { $('body').css('background-color', 'red'); });
+                $('#blue-pill').click(function() { $('body').css('background-color', 'blue'); });
+            });
+        </script>
+    </head>
+    <body>
+       <h1 style="text-align: center">Choose a pill</h1>
+       <p id="red-pill">Red</p>
+       <p id="blue-pill">Blue</p>
+    </body>
+</html>
