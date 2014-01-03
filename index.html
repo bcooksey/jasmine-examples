@@ -1,18 +1,46 @@
 <!DOCTYPE html >
 <html>
     <head>
-        <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
         <script src="jquery.min.js"></script>
+        <style>
+            body {
+                color: white;
+                z-index: 0;
+            }
+            .pills {
+                background-image:url('pills.jpg');
+            }
+            h1 {
+                text-align: center;
+            }
+            p {
+                position: absolute;
+                top: 220px;
+                height: 300px;
+                width: 300px;
+                z-index: 100;
+            }
+            #red-pill {
+                left: 350px;
+            }
+            #blue-pill {
+                left: 1000px;
+            }
+        </style>
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#red-pill').click(function() { $('body').css('background-color', 'red'); });
-                $('#blue-pill').click(function() { $('body').css('background-color', 'blue'); });
+                $('#red-pill').click(function() {
+                    $('body').css('background-color', 'red').removeClass('pills');
+                });
+                $('#blue-pill').click(function() {
+                    $('body').css('background-color', 'blue').removeClass('pills');
+                });
             });
         </script>
     </head>
-    <body>
-       <h1 style="text-align: center">Choose a pill</h1>
-       <p id="red-pill">Red</p>
-       <p id="blue-pill">Blue</p>
+    <body class="pills">
+       <h1>Choose a pill</h1>
+       <p id="red-pill"></p>
+       <p id="blue-pill"></p>
     </body>
 </html>
