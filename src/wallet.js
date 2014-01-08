@@ -1,23 +1,14 @@
 var Wallet = function(id) {
-   var that = {id: id, bitcoins: 0};
+   var that = {id: id, coins: 0};
 
-   that.loadBitcoins = function() {
-
-      $.ajax('http://httpbin.org/status/500', {
-         data: {id: that.id},
-         success: function(data, status, xhr) {
-            that.bitcoins = data.bitcoins;
-            return null 
-         },
-         error: function(xhr) {
-            return null
-         }
-      });
-
-      return null;
+   that.loadCoins = function() {
+      $('#wallet-coin-count').html(50);
+      that.coins = 50;
    };
 
-   that.getBitcoins = function() { return that.bitcoins; }
+   that.getCoins = function() { return that.coins; }
+
+   $('#wallet-open-button').click(that.loadCoins);
 
    return that;
 };
