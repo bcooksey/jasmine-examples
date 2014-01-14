@@ -3,6 +3,8 @@ var Wallet = function(id) {
 
    that.loadCoins = function() {
       $('#wallet-coin-count').html(50);
+      $('#wallet-closed').hide();
+      $('#wallet-open').show();
       that.coins = 50;
    };
 

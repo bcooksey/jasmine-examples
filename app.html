@@ -1,0 +1,92 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <style>
+            #wallet img {
+                width: 200px;
+            }
+
+            #wallet-closed {
+                background-image: url("wallet-closed.jpg");
+                background-size: 100%;
+                width: 200px;
+                height: 150px;
+                background-position-y: 80%;
+            }
+
+            #wallet-open {
+                background-image: url("wallet-open.jpg");
+                background-size: 100%;
+                width: 200px;
+                height: 150px;
+                background-position-y: 80%;
+            }
+
+            #wallet-open span {
+                text-align: center;
+            }
+        </style>
+        <script type="text/javascript" src="lib/stripe/stripe.js"></script>
+        <script type="text/javascript" src="jquery.min.js"></script>
+        <script type="text/javascript" src="src/converter.js"></script>
+        <script type="text/javascript" src="src/card.js"></script>
+        <script type="text/javascript" src="src/wallet.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#converter button').click(function() {
+                    var method = $('#converter select').val() + 'ToUsd';         
+                    $('#usd-amount').val(
+                        Converter[method]($('#amount').val())
+                    );
+                });
+
+                $('#buy-button').click(function() {
+                    var card = new Card({
+                        number: $('#purchase input:nth-of-type(1)').val(),
+                        expiration: $('#purchase input:nth-of-type(2)').val(),
+                        cvc: $('#purchase input:nth-of-type(3)').val()
+                    });
+                    card.charge($('#usd-amount').val());
+                });
+
+                var wallet = new Wallet();
+                // $('#wallet img').click(function() {
+                // });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Coin Exchange</h1>
+
+        <h3>1. Choose number of Coins to buy</h3>
+        <div id="converter">
+            <input id="amount" type="text"></input>
+            <select>
+                <option value="bitcoin">Bitcoin -> USD</option> 
+                <option value="dogecoin">Dogecoin -> USD</option> 
+                <option value="coinye">CoinYe -> USD</option> 
+            </select>
+            <input id="usd-amount" type="text" disabled="disabled"></input>
+            <button>Calculate Cost</button>
+        </div>
+        <hr/>
+        <h3>2. Purchase Coins</h3>
+        <div id="purchase">
+            <label>Card Number</label><input type="text" value="4412 1000 2000 3000"></input>
+            <br/>
+            <label>Card Expiration</label><input type="text" value="11/11"></input>
+            <br/>
+            <label>Card CVC</label><input type="text" value="123"></input>
+            <br/>
+            <button id="buy-button">Buy</button>
+        </div>
+        <hr/>
+        <h3>3. Check your Wallet</h3>
+        <div id="wallet-closed">
+        </div>
+        <div id="wallet-open" style="display: none;">
+            <span> You have <span id="wallet-coin-count"></span> coins!<span>
+        </div>
+        <button id="wallet-open-button">Open</button>
+    </body>
+</html>
