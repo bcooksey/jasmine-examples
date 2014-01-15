@@ -8,7 +8,9 @@ var Wallet = function(id) {
       that.coins = 50;
    };
 
-   that.getCoins = function() { return that.coins; }
+   that.getCoins = function() {
+       return that.coins;
+   }
 
    $('#wallet-open-button').click(that.loadCoins);
 
