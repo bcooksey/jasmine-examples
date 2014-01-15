@@ -25,7 +25,7 @@ describe('Credit Card', function() {
    it('should create a credit in Stripe when a purchase is cancelled', function() {
       var card = new Card({
          'number': 123456789,
-         'expirationdate': '1/1/2015',
+         'expiration': '1/1/2015',
          'cvc': 123
       });
 
@@ -36,7 +36,7 @@ describe('Credit Card', function() {
 
       expect(Stripe.card.createToken).toHaveBeenCalledWith({
          'number': 123456789,
-         'expirationdate': '1/1/2015',
+         'expiration': '1/1/2015',
          'cvc': 123
       });
 
