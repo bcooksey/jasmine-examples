@@ -4,7 +4,6 @@ var Card = function(cardData) {
    };
 
    that.charge = function(amount) {
-      Stripe.setPublishableKey('asdf');
       var token = Stripe.card.createToken(that.cardData);
       $.ajax('http://example.com/', {
          data: {token: token, amount: amount}
@@ -13,7 +12,6 @@ var Card = function(cardData) {
    };
 
    that.credit = function(amount) {
-      Stripe.setPublishableKey('asdf');
       var token = Stripe.card.createToken(that.cardData);
       $.ajax('http://example.com/', {
          data: {token: token, amount: amount}
